@@ -1,7 +1,9 @@
-import React from 'react';
+import {connect} from 'react-redux';
+import {incrementLikes} from '../actions/actionCreators';
 import {Link} from 'react-router-dom';
+import React from 'react';
 
-function Photo({post, commentCount}) {
+function Photo({post, commentCount, incrementLikes}) {
   return (<figure className="grid-figure">
     <div className="grid-photo-wrap">
       <Link to={'/view/' + post.postId}>
@@ -11,7 +13,10 @@ function Photo({post, commentCount}) {
     <figcaption>
       <p>{post.caption}</p>
       <div className="control-buttons">
-        <button className="likes">&hearts; {post.likes}</button>
+        <button className="likes"
+                onClick={() => incrementLikes(post.postId)}>
+          &hearts; {post.likes}
+        </button>
         <Link className="button" to={'/view/' + post.postId}>
           <span className="comment-count">
             <span className="speech-bubble"></span>
@@ -23,4 +28,9 @@ function Photo({post, commentCount}) {
   </figure>);
 }
 
-export default Photo;
+export default connect(
+  undefined /* mapStateToProps */,
+  dispatch => ({
+    incrementLikes: photoId => dispatch(incrementLikes(photoId)),
+  })
+)(Photo);

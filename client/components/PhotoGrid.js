@@ -6,11 +6,13 @@ import Photo from './Photo';
 function PhotoGrid({posts, comments}) {
   return (<div className="photo-grid">
     {
-      posts.map((post, i) => {
-        const commentsOnPost = comments[post.postId] || [];
-        const commentCount = commentsOnPost.length;
-        return <Photo post={post} commentCount={commentCount} key={i} />
-      })
+      Array.from(posts)
+        .sort((left, right) => left.index - right.index)
+        .map((post, i) => {
+          const commentsOnPost = comments[post.postId] || [];
+          const commentCount = commentsOnPost.length;
+          return <Photo post={post} commentCount={commentCount} key={i} />
+        })
     }
   </div>);
 }
