@@ -1,8 +1,9 @@
+import {connect} from 'react-redux';
+import {history} from '../store';
 import {Link, BrowserRouter, Route} from 'react-router-dom';
 import PhotoGrid from './PhotoGrid';
 import React from 'react';
 import Single from './Single';
-import {history} from '../store';
 
 class Main extends React.Component {
   render() {

@@ -1,13 +1,13 @@
-import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import React from 'react';
 
 class PhotoGrid extends React.Component {
   render() {
     return (<div className="photo-grid">
-      <p>I'm the photo grid</p>
-      <p><Link to="/view/asdf">view asdf photo</Link></p>
+      Number of posts: {this.props.posts.length}
     </div>);
   }
 }
 
-export default PhotoGrid;
+export default connect(state => ({posts: state.posts}))(PhotoGrid);
