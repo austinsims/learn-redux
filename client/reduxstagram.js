@@ -3,13 +3,13 @@ import css from './styles.css';
 import Single from './components/Single';
 import PhotoGrid from './components/PhotoGrid';
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Link, BrowserRouter, Route} from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 
 const router = (
   <BrowserRouter history={createBrowserHistory()}>
     <div>
-      <h1>Reduxtagram</h1>
+      <h1><Link to="/">Reduxtagram</Link></h1>
       <Route exact path="/" component={PhotoGrid} />
       <Route path="/view/:photoId" component={Single} />
     </div>
