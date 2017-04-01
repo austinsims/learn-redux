@@ -24,6 +24,11 @@ module.exports = {
         loaders: ['babel-loader'],
         include: path.join(__dirname, 'client'),
       },
+      // CSS
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
     ],
   },
 };
