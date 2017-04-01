@@ -1,5 +1,5 @@
 /**
- * @param {!Object<!Array<Object>>} state Object where keys are postId,
+ * @param {?Object<!Array<Object>>} state Object where keys are postId,
  *     and values are an array of comment objects (strings user and comment)
  * @param {*} action 
  */
