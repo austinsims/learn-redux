@@ -1,11 +1,12 @@
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import React from 'react';
+import Photo from './Photo';
 
 class PhotoGrid extends React.Component {
   render() {
     return (<div className="photo-grid">
-      Number of posts: {this.props.posts.length}
+      {this.props.posts.map((post, i) => <Photo post={post} key={i} />)}
     </div>);
   }
 }
