@@ -6,15 +6,12 @@ import PhotoGrid from './components/PhotoGrid';
 import React from 'react';
 import Single from './components/Single';
 import store, {history} from './store';
+import App from './components/App';
 
 const router = (
   <Provider store={store}>
     <BrowserRouter history={history}>
-      <div>
-        <h1><Link to="/">Reduxtagram</Link></h1>
-        <Route exact path="/" component={PhotoGrid} />
-        <Route path="/view/:photoId" component={Single} />
-      </div>
+      <App />
     </BrowserRouter>
   </Provider>
 );
