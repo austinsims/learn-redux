@@ -5,9 +5,12 @@ function Photo({post}) {
   return (<figure className="grid-figure">
     <div className="grid-photo-wrap">
       <Link to={'/view/' + post.postId}>
-        {post.caption}
+        <img src={post.display_src} alt={post.caption} />
       </Link>
     </div>
+    <figcaption>
+      <p>{post.caption}</p>
+    </figcaption>
   </figure>);
 }
 
