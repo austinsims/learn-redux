@@ -7,6 +7,7 @@ class Main extends React.Component {
       <h1>
         Redustagram
       </h1>
+      {React.cloneElement(this.props.children, this.props)}
     </div>);
   }
 }
