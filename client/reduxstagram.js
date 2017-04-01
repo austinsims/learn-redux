@@ -1,10 +1,12 @@
+import {Link, BrowserRouter, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import {render} from 'react-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 import css from './styles.css';
-import Single from './components/Single';
 import PhotoGrid from './components/PhotoGrid';
 import React from 'react';
-import {Link, BrowserRouter, Route} from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
+import Single from './components/Single';
+import store, {history} from './store';
 
 const router = (
   <BrowserRouter history={createBrowserHistory()}>
