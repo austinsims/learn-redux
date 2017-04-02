@@ -1,9 +1,19 @@
 import React from 'react';
+import Photo from './Photo';
+import {connect} from 'react-redux'
 
-function Single() {
+function Single({
+    // Provided by parent Route component.
+    match,
+    // Provided by connect.
+    posts}) {
+  const postId = match.params.postId;
+  const post = posts.find(post => post.postId === postId);
   return (<div className="single-photo">
-    I'm the Single
+    <Photo post={post} />
   </div>);
 }
 
-export default Single;
+export default connect(
+  state => ({posts: state.posts}),
+)(Single);
