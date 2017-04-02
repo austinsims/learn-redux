@@ -8,7 +8,6 @@
  * @param {*} action 
  */
 export default function posts(state = [], action) {
-  console.log('posts reducer');
   switch (action.type) {
     case 'INCREMENT_LIKES':
       const {postId} = action;
