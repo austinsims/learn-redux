@@ -1,11 +1,12 @@
-import React from 'react';
+import {addComment, removeComment} from '../actions/actionCreators';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {addComment} from '../actions/actionCreators';
+import React from 'react';
 
 class Comments extends React.Component {
   render() {
     return (<div className="comments">
-      {this.props.comments.map(renderComment)}
+      {this.props.comments.map(this.renderComment.bind(this))}
       <form ref="commentForm"
             className="comment-form"
             onSubmit={(event) => this.handleSubmit(event)}>
@@ -13,6 +14,19 @@ class Comments extends React.Component {
         <input type="text" ref="text" placeholder="text" />
         <input type="submit" hidden />
       </form>
+    </div>);
+  }
+
+  renderComment(comment, index) {
+    return (<div key={index} className="comment">
+      <p>
+        <strong>{comment.user}</strong>
+        {comment.text}
+        <button className="remove-comment"
+                onClick={() => this.props.removeComment(this.props.postId, index)}>
+          &times;
+        </button>
+      </p>
     </div>);
   }
 
@@ -30,6 +44,13 @@ class Comments extends React.Component {
     this.props.addComment(this.props.postId, user, text);
     this.refs.commentForm.reset();
   }
+
+  handleRemove(index) {
+
+  }
+}
+
+function renderComment(comment, index, removeComment) {
 }
 
 Comments.propTypes = {
@@ -38,21 +59,10 @@ Comments.propTypes = {
   postId: React.PropTypes.string.isRequired,
   // Provided by connect.
   addComment: React.PropTypes.func.isRequired,
+  removeComment: React.PropTypes.func.isRequired,
 };
-
-function renderComment(comment, index) {
-  return (<div key={index} className="comment">
-    <p>
-      <strong>{comment.user}</strong>
-      {comment.text}
-      <button className="remove-comment">&times;</button>
-    </p>
-  </div>);
-}
 
 export default connect(
   undefined /* mapStateToProps */,
-  dispatch => ({
-    addComment: (postId, user, text) => dispatch(addComment(postId, user, text))
-  }),
+  dispatch => bindActionCreators({addComment, removeComment}, dispatch)
 )(Comments);

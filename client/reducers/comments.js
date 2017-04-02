@@ -4,13 +4,28 @@
  * @param {*} action 
  */
 export default function comments(state = {}, action) {
-  if (action.type !== 'ADD_COMMENT') {
-    return state;
+  switch (action.type) {
+    case 'ADD_COMMENT':
+      return addComment(state, action.postId, action.user, action.text);
+    case 'REMOVE_COMMENT':
+      return removeComment(state, action.postId, action.index);
+    default:
+      return state;
   }
+}
 
-  const {postId, user, text} = action;
+function addComment(state = {}, postId, user, text) {
   let commentsOnPost = Array.from(state[postId] || []);
   commentsOnPost = [...commentsOnPost, {postId, user, text}];
+  const newState = {...state, [postId]: commentsOnPost};
+  return newState;
+}
+
+function removeComment(state = {}, postId, indexToRemove) {
+  console.log('remove comment');
+  let commentsOnPost = Array.from(state[postId] || []);
+  commentsOnPost =
+      commentsOnPost.filter((comment, index) => index !== indexToRemove);
   const newState = {...state, [postId]: commentsOnPost};
   return newState;
 }
