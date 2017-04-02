@@ -1,9 +1,16 @@
 import React from 'react';
 
-function Comments({comments}) {
-  return (<div className="comments">
-    {comments.map(renderComment)}
-  </div>);
+class Comments extends React.Component {
+  render() {
+    return (<div className="comments">
+      {this.props.comments.map(renderComment)}
+      <form ref="commentForm" className="comment-form">
+        <input type="text" ref="user" placeholder="user" />
+        <input type="text" ref="text" placeholder="text" />
+        <input type="submit" hidden />
+      </form>
+    </div>);
+  }
 }
 
 function renderComment(comment, index) {
