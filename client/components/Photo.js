@@ -3,7 +3,14 @@ import {incrementLikes} from '../actions/actionCreators';
 import {Link} from 'react-router-dom';
 import React from 'react';
 
-function Photo({post, commentCount, incrementLikes}) {
+function Photo({
+    // Provided by parent component.
+    post,
+    // Provided by connect.
+    comments = {},
+    incrementLikes}) {
+  const commentsOnPost = comments[post.postId] || [];
+  const commentCount = commentsOnPost.length;
   return (<figure className="grid-figure">
     <div className="grid-photo-wrap">
       <Link to={'/view/' + post.postId}>
@@ -29,7 +36,7 @@ function Photo({post, commentCount, incrementLikes}) {
 }
 
 export default connect(
-  undefined /* mapStateToProps */,
+  state => ({comments: state.comments}),
   dispatch => ({
     incrementLikes: photoId => dispatch(incrementLikes(photoId)),
   })
