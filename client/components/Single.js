@@ -14,7 +14,7 @@ function Single({
   const commentsOnPost = comments[postId] || [];
   return (<div className="single-photo">
     <Photo post={post} />
-    <Comments comments={commentsOnPost} />
+    <Comments comments={commentsOnPost} postId={post.postId} />
   </div>);
 }
 

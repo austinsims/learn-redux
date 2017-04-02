@@ -7,9 +7,10 @@ export default function comments(state = {}, action) {
   if (action.type !== 'ADD_COMMENT') {
     return state;
   }
+
   const {postId, user, text} = action;
-  let commentsOnPost = state[postId] || [];
-  commentsOnPost = [...commentsOnPost, {user, text}];
-  console.log('new state: ', {...state, [postId]: commentsOnPost});
-  return {...state, postId: commentsOnPost};
+  let commentsOnPost = Array.from(state[postId] || []);
+  commentsOnPost = [...commentsOnPost, {postId, user, text}];
+  const newState = {...state, [postId]: commentsOnPost};
+  return newState;
 }
