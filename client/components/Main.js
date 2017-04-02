@@ -11,7 +11,7 @@ function Main() {
       <div>
         <h1><Link to="/">Reduxtagram</Link></h1>
         <Route exact path="/" component={PhotoGrid} />
-        <Route path="/view/:photoId" component={Single} />
+        <Route path="/view/:postId" component={Single} />
       </div>
     </BrowserRouter>
   );
