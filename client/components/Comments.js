@@ -28,6 +28,7 @@ class Comments extends React.Component {
     }
 
     this.props.addComment(this.props.postId, user, text);
+    this.refs.commentForm.reset();
   }
 }
 
